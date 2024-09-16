@@ -58,9 +58,12 @@ func HandleError(result interface{}, err error) (r interface{}) {
 }
 
 func main() {
-	masterPool = simpleredis.NewConnectionPoolHost("redis-primary:6379")
+	masterHost := os.Getenv("REDIS_PRIMARY_HOST")
+	replicaHost := os.Getenv("REDIS_SECONDARY_HOST")
+
+	masterPool = simpleredis.NewConnectionPoolHost(masterHost + ":6379")
 	defer masterPool.Close()
-	replicaPool = simpleredis.NewConnectionPoolHost("redis-secondary:6379")
+	replicaPool = simpleredis.NewConnectionPoolHost(replicaHost + ":6379")
 	defer replicaPool.Close()
 
 	r := mux.NewRouter()
