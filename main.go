@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
+	"github.com/urfave/negroni"
 	"github.com/xyproto/simpleredis/v2"
 )
 
