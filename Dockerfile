@@ -1,9 +1,9 @@
-FROM golang:1.10.0
+FROM golang:1.22.2
 WORKDIR /app
 ADD ./go.mod .
 RUN go get github.com/urfave/negroni
-RUN go get -u github.com/gorilla/mux
-RUN go get -u github.com/xyproto/simpleredis/v2
+RUN go get github.com/gorilla/mux
+RUN go get github.com/xyproto/simpleredis/v2
 ADD ./main.go .
 RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
